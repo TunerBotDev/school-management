@@ -1,0 +1,1 @@
+[{"name": "Krish Srivastava", "class": "XII", "admission_number": "A-2109", "age": "16", "grades": [], "fees": "2023-06-21 19:26:39", "joined_on": "2023-06-21 19:26:39", "next_due": "June", "transport": "Private"}]
