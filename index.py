@@ -39,8 +39,9 @@ def interface():
             print("Terminating The Current Process.....")
             sys.exit()
         else: # Authentication passed.
-            print("Authentication Passed!")
-    print("What Would You Like To Do Today?\n1. Add A New Student\n2. Modify A Current Student.\n3. Get Information About Student\n4. Remove A Student")
+          auth_passed = True
+          print("Authentication Passed!")
+          print("What Would You Like To Do Today?\n1. Add A New Student\n2. Modify A Current Student.\n3. Get Information About Student\n4. Remove A Student")
     choice = int(input("Enter Your Choice: "))
     if choice not in range(1, 5):
         print("Invalid Choice Provided! Please Provide an Integer in the range from 1 to 4")
