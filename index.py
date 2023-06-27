@@ -2,23 +2,44 @@ import sys
 from datetime import datetime
 import calendar
 import json
+auth_passed = False
+def find_student_index(admission_number):
+    with open("data.txt", "r") as file:
+        existing_data = json.load(file)
+    for i, student in enumerate(existing_data):
+        if student["admission_number"] == admission_number:
+            return i
+    return -1
 
-def get_file(name):
-    with open(name, "r") as file:
-        data = file.read()
-    return data
 
-print("[WELCOME] Welcome to The School Dashboard!")
-password = "school@2023_xyz"
-authentication = input("Enter The Dashboard Password: ")
-if authentication != password:
-    print("Invalid Password!")
-    print("Terminating The Current Process.....")
-    sys.exit()
-else: # Authentication passed.
-    print("Authentication Passed!")
-
+def display_student_data(student):
+    print("Name:", student["name"])
+    print("Class:", student["class"])
+    print("Admission Number:", student["admission_number"])
+    print("Age:", student["age"])
+    grades = student["grades"]
+    nlist = []
+    for item in grades:
+        nlist.append(item["name"])
+    grades = ", ".join(nlist)
+    print("Grades:", grades)
+    print("Fees:", student["fees"])
+    print("Joined On:", student["joined_on"])
+    print("Next Due:", student["next_due"])
+    print("Transport:", student["transport"])
+    print()
 def interface():
+    global auth_passed
+    print("[WELCOME] Welcome to The School Dashboard!")
+    password = "school@2023_xyz"
+    if auth_passed != True:
+        authentication = input("Enter The Dashboard Password: ")
+        if authentication != password:
+            print("Invalid Password!")
+            print("Terminating The Current Process.....")
+            sys.exit()
+        else: # Authentication passed.
+            print("Authentication Passed!")
     print("What Would You Like To Do Today?\n1. Add A New Student\n2. Modify A Current Student.\n3. Get Information About Student\n4. Remove A Student")
     choice = int(input("Enter Your Choice: "))
     if choice not in range(1, 5):
